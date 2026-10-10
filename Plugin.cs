@@ -1,54 +1,34 @@
 using BepInEx;
 using UnityEngine;
 
-namespace GTagModMenu
+namespace MyUniqueModMenu
 {
-    [BepInPlugin("com.yourname.gtagmenu", "Test Mod Menu", "1.0.0")]
+    [BepInPlugin("org.yourname.gorillatag.uniquemenu", "My Unique Mod Menu", "1.0.0")]
     public class Plugin : BaseUnityPlugin
     {
-        private bool menuOpen = false;
-        private bool longArms = false;
-        private bool fly = false;
+        private bool isMenuVisible = false;
 
         void Update()
         {
-            // Press F1 to toggle the visual menu
-            if (UnityInput.GetKeyDown(KeyCode.F1))
+            // Toggle menu with Q key or secondary input
+            if (UnityInput.GetKeyDown(KeyCode.Q))
             {
-                menuOpen = !menuOpen;
-            }
-
-            // Long arms logic
-            if (longArms)
-            {
-                GameObject player = GameObject.Find("GorillaPlayer");
-                if (player != null) player.transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
-            }
-
-            // Fly logic
-            if (fly && UnityInput.GetKey(KeyCode.Space))
-            {
-                if (Camera.main != null)
-                {
-                    Camera.main.transform.position += Camera.main.transform.forward * Time.deltaTime * 12f;
-                }
+                isMenuVisible = !isMenuVisible;
             }
         }
 
         void OnGUI()
         {
-            if (!menuOpen) return;
+            if (!isMenuVisible) return;
 
-            GUI.Box(new Rect(40, 40, 220, 180), "My Custom Mod Menu");
+            // Draw a custom box for your unique menu
+            GUI.Box(new Rect(30, 30, 250, 200), "My Custom Gorilla Tag Menu");
+            
+            GUI.Label(new Rect(40, 60, 200, 25), "Status: Active");
 
-            if (GUI.Button(new Rect(50, 80, 200, 30), "Long Arms: " + (longArms ? "ON" : "OFF")))
+            if (GUI.Button(new Rect(40, 100, 180, 30), "Custom Button"))
             {
-                longArms = !longArms;
-            }
-
-            if (GUI.Button(new Rect(50, 120, 200, 30), "Fly (Space): " + (fly ? "ON" : "OFF")))
-            {
-                fly = !fly;
+                Debug.Log("Custom menu button pressed!");
             }
         }
     }
