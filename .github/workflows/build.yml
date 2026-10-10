@@ -1,4 +1,4 @@
-name: Build Gorilla Tag Mod
+name: Build Mod Menu
 
 on: [push]
 
@@ -7,19 +7,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v5
+    - uses: actions/checkout@v4
 
-    - name: Setup .NET SDK
-      uses: actions/setup-dotnet@v5
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '6.0'
 
-    - name: Build with dotnet
+    - name: Restore Dependencies
+      run: dotnet restore
+
+    - name: Build Release
       run: dotnet build -c Release
 
-    - name: Upload DLL Artifact
+    - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: CompiledMod
+        name: MyUniqueModMenu
         path: bin/Release/**/*.dll
