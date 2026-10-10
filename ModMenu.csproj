@@ -1,11 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <AssemblyName>GTagModMenu</AssemblyName>
-    <RootNamespace>GTagModMenu</RootNamespace>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <LangVersion>latest</LangVersion>
+    <AssemblyName>MyUniqueModMenu</AssemblyName>
+    <RootNamespace>MyUniqueModMenu</RootNamespace>
+    <Version>1.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
